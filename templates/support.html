@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+{{ super() }}
+<h3>Обращение в Мэрию города Лето-City 2023</h3>
+<h5>Не забудьте упомянуть контактную информацию в тексте сообщения!</h5>
+<form action="/support" method="post" class="support" enctype="multipart/form-data">
+    <p><label>ID карты: </label> <input type="number" name="id" value="" required />
+    <p><label>Сообщение: </label> 
+    <p><textarea  name="msg" value="" required ></textarea>
+    <p><input type="submit" value="Отправить" />
+</form>
+{% endblock %}

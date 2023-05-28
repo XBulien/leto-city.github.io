@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<h3>Возможности Мэрии.</h3>
+
+    <p><a href="/admin/stats">Статистика каждого жителя города + уплата налогов.</a>
+    <p><a href="/admin/business_taxes">Налоговая квитанция. Бизнес</a>
+        <p><a href="/admin/civil_taxes">Налоговая квитанция. Наемный работник</a>
+            <p><a href="/admin/post_news">Публикация новостей.</a>
+                <p><a href="/admin/messages">Обращения горожан.</a>
+{% endblock %}

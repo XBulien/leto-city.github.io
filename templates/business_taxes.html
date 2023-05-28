@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<h3>Налоговая квитанция. Предприятие.</h3>
+<p><a href="/admin">Вернуться на страницу предоставления услуг.</a></p>
+<form action="/admin/business_taxes" method="post" class="business-taxes" enctype="multipart/form-data">
+    <p><label>Имя: </label> <input type="text" name="surname" value="" required />
+    <p><label>Фамилия: </label> <input type="text" name="name" value="" required />
+        <p><label>ID карты: </label> <input type="number" name="id" value="" required />
+        <p><label>Название фирмы: </label> <input type="text" name="firm_name" value="" required />
+        <p><label>Полученная прибыль: </label> <input type="number" name="tax" value="" required />
+    <p><input type="submit" value="Отправить" />
+</form>
+{% endblock %}

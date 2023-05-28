@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<h4>{{user.name}} {{user.surname}}</h4>
+{% if user.IsAdmin == 1 %}
+<h5>Сотрудник мэрии.</h5>
+<p><a href="/admin">Перейти в предоставление услуг.</a></p>
+{% endif %}
+<p><a href="/logout">Выйти из профиля</a>
+{% endblock %}

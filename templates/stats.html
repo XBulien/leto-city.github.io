@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<meta http-equiv="refresh" content="30">
+<h2>Статистика по каждому жителю города Лето-City 2023.</h2>
+<h3>Использование только для Мэрии.</h3>
+<p><a href="/admin">Вернуться на страницу предоставления услуг.</a></p>
+<table>
+    <tr>
+        <td>ID карты</td>
+        <td>Фамилия</td>
+        <td>Имя</td>
+        <td>Оплачены ли налоги?</td>
+    </tr>
+    {% for citizen in citizens %}
+        <tr>
+            <td>{{citizen.id}}</td>
+            <td>{{citizen.name}}</td>
+            <td>{{citizen.surname}}</td>
+            {% if citizen.PaidTaxes == 1 %}
+            <td>Оплачено</td>
+            {% elif citizen.PaidTaxes == 2 %}
+            <td>Квитанция получена. Ожидается оплата.</td>
+            {% else %}
+            <td>Не оплачено</td>
+            {% endif %}
+            <td><form method="POST", action="/admin/stats", enctype="multipart/form-data"><button type="submit" name="button" value={{citizen.id}}>Изменить статус оплаты.</button></form></td>
+        </tr>
+        
+    {% endfor %}
+</table>
+{% endblock %}

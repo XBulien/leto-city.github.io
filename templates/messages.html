@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<p><a href="/admin">Вернуться на страницу предоставления услуг.</a></p>
+{% if msgs|length != 0 %}
+{% for msge in msgs[::-1] %}
+<h4>{{dbase.getUser(msge.id)['name']}} {{dbase.getUser(msge.id)['surname']}}</h4>
+<p>{{msge.msg}}</p>
+<p>--------------------</p>
+{% endfor %}
+{% else %}
+<h4>Обращений пока нет!</h4>
+{% endif %}
+{% endblock %}
